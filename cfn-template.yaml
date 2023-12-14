@@ -23,14 +23,17 @@ Resources:
             dnf install python3 -y
             dnf install python3-pip -y
             pip3 install flask
-          
-            FOLDER="https://raw.githubusercontent.com/tahabozoyuk/Roman-numerals-EC2-CFN_CLI/main"
-            cd /var/www/html
+            wget https://raw.githubusercontent.com/tahabozoyuk/Roman-numerals-EC2-CFN_CLI/main/roman-numerals-converter-app.py
+            mkdir templates ; cd templates
+            FOLDER="https://raw.githubusercontent.com/tahabozoyuk/Roman-numerals-EC2-CFN_CLI/main/templates"
+            cd /home/ec2-user
+            wget ${FOLDER}/index.html
+            wget ${FOLDER}/index.html
+            cd ..
+            python3 roman-numerals-converter-app.py
 
-            curl -s --create-dirs -o "/var/www/html/index.html" -L "$FOLDER"index.html
-            curl -s --create-dirs -o "/var/www/html/cat0.jpg" -L "$FOLDER"cat0.jpg
-            curl -s --create-dirs -o "/var/www/html/cat1.jpg" -L "$FOLDER"cat1.jpg
-            curl -s --create-dirs -o "/var/www/html/cat2.jpg" -L "$FOLDER"cat2.jpg
+
+           
 
   WebServerSecurityGroup:
     Type: "AWS::EC2::SecurityGroup"
