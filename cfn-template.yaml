@@ -8,6 +8,10 @@ Parameters:
   InstanceType:
     Type: 'String'
     Default: 't2.micro'
+  keyPair:
+    Description: Choose your keypair
+    Type: AWS::EC2::KeyPair::KeyName
+    Default: esra
 
 Resources:
   myWebServer:
@@ -15,7 +19,7 @@ Resources:
     Properties:
       ImageId: !Ref LatestAmiId
       InstanceType: !Ref InstanceType
-      KeyName: 'esra'
+      KeyName: !Ref keyPair
       UserData:
         Fn::Base64: |
             #! /bin/bash
