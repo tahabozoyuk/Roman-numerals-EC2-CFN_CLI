@@ -28,7 +28,7 @@ Resources:
             wget https://raw.githubusercontent.com/tahabozoyuk/Roman-numerals-EC2-CFN_CLI/main/roman-numerals-converter-app.py
             mkdir templates ; cd templates
             wget ${FOLDER}/index.html
-            wget ${FOLDER}/index.html
+            wget ${FOLDER}/result.html
             cd ..
             python3 roman-numerals-converter-app.py
 
