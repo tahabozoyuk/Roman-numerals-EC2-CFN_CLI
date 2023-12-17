@@ -11,7 +11,7 @@ Parameters:
   keyPair:
     Description: Choose your keypair
     Type: AWS::EC2::KeyPair::KeyName
-    Default: esra
+    Default: first_key
 
 Resources:
   myWebServer:

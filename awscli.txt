@@ -5,3 +5,44 @@ aws ec2 run-instances \
   --key-name first_key \
   --user-data file://./script.sh \
   --security-group-ids sg-0b8831412f70c500a
+
+aws cloudformation create-stack \
+  --stack-name Romannumeral \
+  --template-body file://cfn-template.yaml
+
+aws iam create-role \
+  --role-name EC2RoleForCLI \
+  --assume-role-policy-document file://trust-policy.json
+
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "ec2.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+
+
+aws iam put-role-policy \
+  --role-name EC2RoleForCLI \
+  --policy-name EC2RolePolicy \
+  --policy-document file://policy.json
+
+
+aws cloudformation create-stack \
+  --stack-name Romannumeral \
+  --template-body file://cfn-template.yaml \
+  --parameters ParameterKey=keyPair,ParameterValue=first_key \
+  --capabilities CAPABILITY_IAM \
+  --role-arn arn:aws:iam::675248394708:role/EC2RoleForCLI
+
+  aws cloudformation create-stack \
+  --stack-name MyEC2Stack \
+  --template-body file://onedrive/masaüstü/cfn-template.yaml
+
