@@ -7,5 +7,4 @@ pip3 install flask
 cd /home/ec2-user
 git clone https://github.com/tahabozoyuk/Roman-numerals-EC2-CFN_CLI.git
 cd Roman-numerals-EC2-CFN_CLI
-chmod +x roman-numerals-converter-app.py
 python3 roman-numerals-converter-app.py

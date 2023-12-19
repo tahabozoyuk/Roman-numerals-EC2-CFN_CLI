@@ -20,14 +20,11 @@ Parameters:
     Type: AWS::EC2::KeyPair::KeyName
 
 Resources:
-
-
-
   WebServerSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties: 
       GroupDescription: Enable HTTP for Flask Web Server and SSH port to secure reach to my EC2
-      GroupName: osvaldo-roman-number-converter
+      GroupName: roman-number-converter
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: 80
