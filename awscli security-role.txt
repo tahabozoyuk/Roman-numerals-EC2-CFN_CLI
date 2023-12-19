@@ -1,0 +1,38 @@
+
+aws cloudformation create-stack \
+  --stack-name Romannumeral \
+  --template-body file://cfn-template.yaml \
+  --parameters ParameterKey=keyPair,ParameterValue=first_key
+
+aws ec2 describe-security-groups \
+   --group-names "templatesecuritygroup" \
+   --query "SecurityGroups[*].GroupId" \
+   --output text
+
+aws ec2 authorize-security-group-ingress \
+   --group-id sg-0b8831412f70c500a \
+   --protocol tcp --port 80 \ 
+   --protocol tcp --port 22
+
+aws cloudformation describe-stacks --stack-name Romannumeral
+
+aws cloudformation delete-stack --stack-name Romannumeral
+
+aws iam create-role \
+  --role-name EC2RoleForCLI \
+  --assume-role-policy-document file://trust-policy.json
+
+aws iam put-role-policy \
+  --role-name EC2RoleForCLI \
+  --policy-name EC2RolePolicy \
+  --policy-document file://policy.json
+
+aws cloudformation create-stack \
+  --stack-name MyStack \
+  --template-body file://cfn-template.yaml \
+  --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM
+
+
+
+
+
